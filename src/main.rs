@@ -15,17 +15,16 @@ fn main() {
         result.push(ch);
     }
 
-
     println!("{}",result)
 }
 
 
-fn get_password_length_from_args() -> i8{
+fn get_password_length_from_args() -> u8{
     let args: Vec<String> = env::args().collect();
-    let mut password_length: i8 = 12;
+    let mut password_length: u8 = 12;
     
     for arg in args {
-        match arg.parse::<i8>() {
+        match arg.parse::<u8>() {
             Ok(number) => password_length = number,
             Err(e) => println!("Invalid argument error: {}",e),
         }

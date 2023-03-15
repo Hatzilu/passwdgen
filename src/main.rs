@@ -24,10 +24,15 @@ fn get_password_length_from_args() -> u8{
     let mut password_length: u8 = 12;
     
     for arg in args {
-        match arg.parse::<u8>() {
+        if !arg.starts_with("length=") { continue;}
+        
+        let split: Vec<&str> = arg.split("=").collect();
+        let length_string = split.get(1).unwrap();
+        match length_string.parse::<u8>() {
             Ok(number) => password_length = number,
             Err(e) => println!("Invalid argument error: {}",e),
         }
+        
     }
     return password_length;
 }
